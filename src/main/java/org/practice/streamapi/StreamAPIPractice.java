@@ -226,7 +226,7 @@ public class StreamAPIPractice {
         noteLst.add(new Notes(6, "note4", 66));
 
         Map<String, Integer> notesRecords = noteLst.stream()
-                .sorted(Comparator.comparingInt(Notes::getTagId).reversed())
+                .sorted(Comparator.comparingInt(Notes::getTagId))
                         .collect(Collectors.toMap(Notes::getTagName,
                                 Notes::getTagId,
                                 (oldTagId, newTagId) -> oldTagId,

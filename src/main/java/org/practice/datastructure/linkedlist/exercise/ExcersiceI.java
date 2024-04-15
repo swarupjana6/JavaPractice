@@ -1,7 +1,7 @@
-package org.practice.datastructure.linklist.exercise;
+package org.practice.datastructure.linkedlist.exercise;
 
-import org.practice.datastructure.linklist.LinkedList;
-import org.practice.datastructure.linklist.Node;
+import org.practice.datastructure.linkedlist.LinkedList;
+import org.practice.datastructure.linkedlist.Node;
 
 /*
 

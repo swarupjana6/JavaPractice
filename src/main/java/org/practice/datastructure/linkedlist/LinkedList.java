@@ -1,4 +1,4 @@
-package org.practice.datastructure.linklist;
+package org.practice.datastructure.linkedlist;
 
 public class LinkedList {
 
