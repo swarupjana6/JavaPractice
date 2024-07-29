@@ -36,6 +36,7 @@ public class LengthOfLongestSubstring {
             }
         }
 
+        System.out.println(storeChar);
         return storeChar.get(0).length();
 
     }

@@ -1,8 +1,6 @@
 package org.practice.streamapi;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -48,6 +46,19 @@ public class StreamAPIPracticeII {
                 .mapToInt(Integer::intValue)
                 .sum();
         System.out.println("Sum of Even :- " + oddSum);
+
+        Map<Boolean, List<Integer>> collect = nums.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0, Collectors.toList()));
+
+        int evenPartSum = collect.get(true)
+                .stream()
+                .mapToInt(Integer::intValue)
+                .reduce(0, Integer::sum);
+        int oddPartSum = collect.get(false)
+                .stream()
+                .mapToInt(Integer::intValue)
+                .reduce(0, Integer::sum);
+        System.out.println("Sum of Even :- " + evenPartSum);
+        System.out.println("Sum of Even :- " + oddPartSum);
 
 
     }

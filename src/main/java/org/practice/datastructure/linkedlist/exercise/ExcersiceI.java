@@ -2,6 +2,7 @@ package org.practice.datastructure.linkedlist.exercise;
 
 import org.practice.datastructure.linkedlist.LinkedList;
 import org.practice.datastructure.linkedlist.Node;
+import org.practice.fastandslowpointer.MiddleLinkedList;
 
 /*
 
@@ -53,24 +54,35 @@ DO NOT use the length attribute in your solution.
  */
 public class ExcersiceI extends LinkedList {
 
+    public ExcersiceI() {
+        super();
+    }
+
     public ExcersiceI(int value) {
         super(value);
     }
 
     public Node findMiddleNode() {
 
-        if(length == 0){
+        if (length == 0) {
             return null;
         }
 
         Node slow = head;
         Node fast = head;
 
-        while(fast.next != null){
+        while (fast.next != null &&  fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
 
         return slow;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6};
+        ExcersiceI excersiceI = new ExcersiceI();
+        excersiceI.createLinkedList(arr);
+        System.out.println(excersiceI.findMiddleNode().value);
     }
 }

@@ -22,6 +22,9 @@ public class AddTwoNumber {
             carry = sum / 10;
             curr.next = new ListNode(sum % 10);
             curr = curr.next;
+
+            p = p.next;
+            q = q.next;
         }
         if (carry > 0 ){
             curr.next = new ListNode(carry);

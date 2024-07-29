@@ -6,6 +6,9 @@ public class LinkedList {
     public Node tail;
     public int length;
 
+    public LinkedList(){
+    }
+
     public LinkedList(int value) {
         Node newNode = new Node(value);
 
@@ -174,6 +177,12 @@ public class LinkedList {
 
             before = temp;
             temp = after;
+        }
+    }
+
+    public void createLinkedList(int[] lst) {
+        for (int i = lst.length - 1; i >= 0; i--) {
+            append(lst[i]);
         }
     }
 

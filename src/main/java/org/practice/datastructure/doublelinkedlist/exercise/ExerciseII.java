@@ -67,4 +67,8 @@ public class ExerciseII extends DoublyLinkedList {
         tail = temp;
     }
 
+    @Override
+    public boolean insert(int index, int value) {
+        return super.insert(index, value);
+    }
 }

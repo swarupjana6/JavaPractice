@@ -11,27 +11,27 @@ public class StreamAPIPractice {
     //Given a list of integers, find out all the even numbers that exist in the list using Stream functions
     public void evenNumber() {
 
-        List<Integer> list = Arrays.asList(10,15,8,49,25,98,32);
+        List<Integer> list = Arrays.asList(10, 15, 8, 49, 25, 98, 32);
 
         list.stream()
-                .filter(n -> n%2 == 0)
+                .filter(n -> n % 2 == 0)
                 .forEach(System.out::println);
     }
 
     //2. Given a list of integers, find out all the numbers starting with 1 using Stream functions?
     public void numberStartingWithOne() {
 
-        List<Integer> myList = Arrays.asList(10,15,8,49,25,98,32,115,113);
+        List<Integer> myList = Arrays.asList(10, 15, 8, 49, 25, 98, 32, 115, 113);
 
         myList.stream()
-                .map( n -> String.valueOf(n))
+                .map(n -> String.valueOf(n))
                 .filter(s -> s.startsWith("1"))
                 .forEach(System.out::println);
     }
 
     //3. How to find duplicate elements in a given integers list in java using Stream functions?
     public void duplicateElements() {
-        List<Integer> myList = Arrays.asList(10,15,8,49,25,98,98,32,15);
+        List<Integer> myList = Arrays.asList(10, 15, 8, 49, 25, 98, 98, 32, 15);
 
         Set<Integer> set = new HashSet<>();
         myList.stream()
@@ -41,7 +41,7 @@ public class StreamAPIPractice {
 
     ///4. Given the list of integers, find the first element of the list using Stream functions?
     public void findFirstElement() {
-        List<Integer> myList = Arrays.asList(10,15,8,49,25,98,98,32,15);
+        List<Integer> myList = Arrays.asList(10, 15, 8, 49, 25, 98, 98, 32, 15);
 
         myList.stream()
                 .findFirst()
@@ -50,17 +50,17 @@ public class StreamAPIPractice {
 
     //5. Given a list of integers, find the total number of elements present in the list using Stream functions?
     public void findTheTotalNumberOfElements() {
-        List<Integer> myList = Arrays.asList(10,15,8,49,25,98,98,32,15);
+        List<Integer> myList = Arrays.asList(10, 15, 8, 49, 25, 98, 98, 32, 15);
         long count = myList.stream()
                 .count();
         count = myList.stream()
-                        .mapToLong(n -> 1 ).sum();
+                .mapToLong(n -> 1).sum();
         System.out.println(count);
     }
 
     //6. Given a list of integers, find the maximum value element present in it using Stream functions?
     public void findMaxElement() {
-        List<Integer> myList = Arrays.asList(10,15,8,49,25,98,98,32,15);
+        List<Integer> myList = Arrays.asList(10, 15, 8, 49, 25, 98, 98, 32, 15);
 
         int max = myList.stream()
                 .max(Integer::max)
@@ -73,14 +73,23 @@ public class StreamAPIPractice {
         String input = "Java articles are Awesome";
 
         Character result = input.chars()
-                .mapToObj(s -> Character.toLowerCase(Character.valueOf((char)s)))
+                .mapToObj(s -> Character.toLowerCase(Character.valueOf((char) s)))
                 .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
                 .entrySet()
                 .stream()
                 .filter(entry -> entry.getValue() == 1)
-                .map(entry -> entry.getKey())
+                .map(Map.Entry::getKey)
                 .findFirst()
                 .get();
+
+        Arrays.stream(input.split(""))
+                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() == 1)
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .ifPresent(System.out::println);
 
         System.out.println(result);
     }
@@ -99,12 +108,21 @@ public class StreamAPIPractice {
                 .findFirst()
                 .get();
 
+        Arrays.stream(input.split(""))
+                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .ifPresent(System.out::println);
+
         System.out.println(result);
     }
 
     //9. Given a list of integers, sort all the values present in it using Stream functions?
     public void sortValues() {
-        List<Integer> myList = Arrays.asList(10,15,8,49,25,98,98,32,15);
+        List<Integer> myList = Arrays.asList(10, 15, 8, 49, 25, 98, 98, 32, 15);
 
         myList.stream()
                 .sorted()
@@ -113,16 +131,16 @@ public class StreamAPIPractice {
 
     //10. Given a list of integers, sort all the values present in it in descending order using Stream functions?
     public void sortDescending() {
-        List<Integer> myList = Arrays.asList(10,15,8,49,25,98,98,32,15);
+        List<Integer> myList = Arrays.asList(10, 15, 8, 49, 25, 98, 98, 32, 15);
 
         myList.stream()
 //                .sorted(Collections.reverseOrder())
-                .sorted((a,b) -> b.compareTo(a))
+                .sorted((a, b) -> b.compareTo(a))
                 .forEach(System.out::println);
     }
 
     //11. Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
-    public boolean containsDuplicate(int[] nums){
+    public boolean containsDuplicate(int[] nums) {
         List<Integer> list = Arrays.stream(nums)
                 .boxed()
                 .collect(Collectors.toList());
@@ -132,7 +150,7 @@ public class StreamAPIPractice {
     }
 
     //12. How will you get the current date and time using Java 8 Date and Time API?
-    public void getCurrentDateAndTime(){
+    public void getCurrentDateAndTime() {
         System.out.println("Current Local Date: " + java.time.LocalDate.now());
         //Used LocalDate API to get the date
         System.out.println("Current Local Time: " + java.time.LocalTime.now());
@@ -142,7 +160,7 @@ public class StreamAPIPractice {
     }
 
     //13. Write a Java 8 program to concatenate two Streams?
-    public void concatenateTwoStreams(){
+    public void concatenateTwoStreams() {
         List<String> list1 = Arrays.asList("Java", "8");
         List<String> list2 = Arrays.asList("explained", "through", "programs");
 
@@ -153,50 +171,58 @@ public class StreamAPIPractice {
     }
 
     //14. Java 8 program to perform cube on list elements and filter numbers greater than 50.
-    public void cubeAndFilter(){
-        List<Integer> integerList = Arrays.asList(4,5,6,7,1,2,3);
+    public void cubeAndFilter() {
+        List<Integer> integerList = Arrays.asList(4, 5, 6, 7, 1, 2, 3);
 
         integerList.stream()
-                .map(n -> n*n*n)
+                .map(n -> n * n * n)
                 .filter(n -> n > 50)
                 .forEach(System.out::println);
     }
 
     //15. Write a Java 8 program to sort an array and then convert the sorted array into Stream?
     public void sortedArrayToStream() {
-        int arr[] = { 99, 55, 203, 99, 4, 91 };
+        int arr[] = {99, 55, 203, 99, 4, 91};
         Arrays.parallelSort(arr);
 
         Arrays.stream(arr).forEach(n -> System.out.println(n + " "));
     }
 
     //16. How to use map to convert object into Uppercase in Java 8?
-    public void convertObjectToUppercase(){
+    public void convertObjectToUppercase() {
         List<String> names = Arrays.asList("aa", "bb");
 
         names.stream()
                 .map(String::toUpperCase)
-                .collect(Collectors.toList())
+                .toList()
                 .forEach(System.out::println);
     }
 
     //17. How to convert a List of objects into a Map by considering duplicated keys and store them in sorted order?
-    public void testNotes(){
+    public void testNotes() {
 
         class Notes implements Comparable<Integer> {
             int id;
             String tagName;
             int tagId;
 
-            public Notes (int id, String note, int value){
+            public Notes(int id, String note, int value) {
                 this.id = id;
                 this.tagName = note;
                 this.tagId = value;
             }
 
-            public int getId() {return this.id;}
-            public String getTagName() {return this.tagName;}
-            public int getTagId() {return this.tagId;}
+            public int getId() {
+                return this.id;
+            }
+
+            public String getTagName() {
+                return this.tagName;
+            }
+
+            public int getTagId() {
+                return this.tagId;
+            }
 
 
             @Override
@@ -227,13 +253,13 @@ public class StreamAPIPractice {
 
         Map<String, Integer> notesRecords = noteLst.stream()
                 .sorted(Comparator.comparingInt(Notes::getTagId))
-                        .collect(Collectors.toMap(Notes::getTagName,
-                                Notes::getTagId,
-                                (oldTagId, newTagId) -> oldTagId,
-                                HashMap::new));
+                .collect(Collectors.toMap(Notes::getTagName,
+                        Notes::getTagId,
+                        (oldTagId, newTagId) -> oldTagId,
+                        HashMap::new));
         //How to convert a List of objects into a Map by considering duplicated keys and store them in sorted order?
 
-                System.out.println("Notes : " + notesRecords);
+        System.out.println("Notes : " + notesRecords);
     }
 
 
@@ -285,9 +311,9 @@ public class StreamAPIPractice {
 
         System.out.println("11. Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.");
         System.out.println("Input: nums = [1,2,3,1]");
-        int[] nums = { 1,2,3,1};
+        int[] nums = {1, 2, 3, 1};
         System.out.println(streamAPIPractice.containsDuplicate(nums));
-        int[] nums2 = {1,2,3,4};
+        int[] nums2 = {1, 2, 3, 4};
         System.out.println("Input: nums = [1,2,3,4]");
         System.out.println(streamAPIPractice.containsDuplicate(nums2));
         System.out.println();
