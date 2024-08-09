@@ -18,6 +18,18 @@ public class StreamAPIPractice {
                 .forEach(System.out::println);
     }
 
+    //Even number
+    //Given a list of integers, find out all the even numbers that exist in the list using Stream functions
+    public void findOddEvenUsingPartition() {
+
+        List<Integer> list = Arrays.asList(10, 15, 8, 49, 25, 98, 32);
+
+        Map<Boolean, List<Integer>> partition = list.stream()
+                .collect(Collectors.partitioningBy(n -> n % 2 == 0));
+        System.out.println("Even : " + partition.get(true));
+        System.out.println("Odd : " + partition.get(false));
+    }
+
     //2. Given a list of integers, find out all the numbers starting with 1 using Stream functions?
     public void numberStartingWithOne() {
 
@@ -259,7 +271,12 @@ public class StreamAPIPractice {
                         HashMap::new));
         //How to convert a List of objects into a Map by considering duplicated keys and store them in sorted order?
 
+        Map<String, Integer> notesRecords2 = noteLst.stream()
+                .sorted(Comparator.comparingInt(Notes::getTagId))
+                .collect(Collectors.toMap(Notes::getTagName, Notes::getTagId, (oldTagId, newTagId) -> oldTagId, HashMap::new));
+
         System.out.println("Notes : " + notesRecords);
+        System.out.println("Notes2 : " + notesRecords2);
     }
 
 
@@ -271,6 +288,10 @@ public class StreamAPIPractice {
 
         System.out.println("1. Given a list of integers, find out all the even numbers that exist in the list using Stream functions");
         streamAPIPractice.evenNumber();
+        System.out.println();
+
+        System.out.println("1. Given a list of integers, find out all the odd and even numbers using Stream partition functions");
+        streamAPIPractice.findOddEvenUsingPartition();
         System.out.println();
 
         System.out.println("2.Given a list of integers, find out all the numbers starting with 1 using Stream functions?");
@@ -345,7 +366,8 @@ public class StreamAPIPractice {
         List<String> list = Arrays.asList("abc1", "abc2", "abc3");
         long size = list.stream().skip(1)
                 .map(element -> element.substring(0, 3)).sorted().count();
-        List<String> listStream = list.stream().skip(1).map(element -> element.substring(0, 3)).sorted().collect(Collectors.toList());
+        List<String> listStream = list.stream().skip(1).map(element -> element.substring(0, 3)).sorted().toList();
+        System.out.println(listStream);
         System.out.println(size);
     }
 }

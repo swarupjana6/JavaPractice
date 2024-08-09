@@ -1,6 +1,6 @@
 /*
 
-Implement a Custom Queue with following operations
+Implement a Custom Queue in java with following operations
 
 enqueue() -> adds element to the back of the queue e.g. queue.enqueue(1); queue.enqueue(“A”)
 dequeue() -> remove and return element from the front of the queue
