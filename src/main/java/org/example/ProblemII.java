@@ -41,7 +41,6 @@ public class ProblemII {
                 .toList()
                 .forEach(System.out::println);
 
-
         System.out.println(result);
 
     }
